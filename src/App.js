@@ -10,7 +10,8 @@ function App() {
   const { isLoading, error, sendRequest: fetchTasks } = useHttp();
 
   useEffect(() => {
-    const transformedTasks = (taskObj) => {
+    const transformedTasks = (message, taskObj) => {
+      console.log(message)
       const loadedTasks = [];
 
       for (const taskKey in taskObj) {
@@ -24,7 +25,7 @@ function App() {
       {
         url: "https://react-http-3a15e-default-rtdb.firebaseio.com/tasks.json",
       },
-      transformedTasks
+      transformedTasks.bind(null, 'Hello')
     );
     console.log("FETCH Runing");
   }, [fetchTasks]);
